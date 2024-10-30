@@ -746,6 +746,6 @@ def timer():
             elapsed_time += time.time() - start_time
         st.write(f"最終経過時間は {elapsed_time:.2f} 秒です。")
 
-timer()
+# timer()
 
 
