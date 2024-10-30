@@ -571,9 +571,9 @@ if st.button('スクランブル',key='scramble_button'):
     
     st.write(' '.join(spinmark))
     edge_answer = st.text_input('答えを入力してください（エッジ）')
-    st.write(f'ループの優先順位{">".join(esolvelist)}')
+    st.write(f'ループ始めの優先順位{">".join(esolvelist)}')
     corner_answer = st.text_input('答えを入力してください（コーナー）')
-    st.write(f'ループの優先順位{">".join(csolvelist)}')
+    st.write(f'ループ始めの優先順位{">".join(csolvelist)}')
     
     
     if st.button('回答する！', key='answer_button'):
