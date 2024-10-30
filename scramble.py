@@ -854,7 +854,7 @@ def timer():
         if st.session_state.running:
             # タイマーを停止
             st.session_state.elapsed_time += time.time() - st.session_state.start_time
-            st.write(f"停止: 経過時間は {st.session_state.elapsed_time:.2f} 秒です。")
+            st.write(f"停止: 経過時間は {elapsed:.2f} 秒です。")
             st.session_state.running = False
         else:
             # タイマーをスタート
