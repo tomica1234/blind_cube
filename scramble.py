@@ -1,5 +1,6 @@
 import random, copy
 import streamlit as st
+import matplotlib.pyplot as plt
 
 st.title('目隠しキューバーへの道')
 def U(ecubes, ccubes):
@@ -534,6 +535,175 @@ if st.button('スクランブル'):
 
     csolveway = [i for i in clist if i not in ccubes_sample[0]]
 
-    st.write(' '.join(spinmark))
+    str_ecolor = {
+    'あ': 'W', 'い': 'Y', 'う': 'Y', 'え': 'W',
+    'た': 'B', 'ち': 'B', 'つ': 'G', 'て': 'G', 
+    'か': 'W', 'き': 'B', 'く': 'Y', 'け': 'G', 
+    'な': 'O', 'に': 'O', 'ぬ': 'O', 'ね': 'O', 
+    'さ': 'W', 'し': 'B', 'す': 'Y', 'せ': 'G',
+    'ら': 'R', 'り': 'R', 'る': 'R', 'れ': 'R',
+    }
+    
+    str_ccolor = {
+    'あ': 'W', 'い': 'Y', 'う': 'Y', 'え': 'W',
+    'た': 'W', 'ち': 'Y', 'つ': 'Y', 'て': 'W', 
+    'か': 'B', 'き': 'B', 'く': 'G', 'け': 'G', 
+    'な': 'O', 'に': 'O', 'ぬ': 'O', 'ね': 'O', 
+    'さ': 'B', 'し': 'B', 'す': 'G', 'せ': 'G',
+    'ら': 'R', 'り': 'R', 'る': 'R', 'れ': 'R',
+    }
+ 
+
+
+
+    color_map = {
+        "W": "white",
+        "Y": "yellow",
+        "R": "red",
+        "B": "blue",
+        "G": "green",
+        "O": "orange"
+    }
+       st.write(' '.join(spinmark))
+    
     st.write(''.join(esolveway))
     st.write(''.join(csolveway))
+    st.write(ecubes)
+    st.write(ccubes)
+
+    
+
+    # cube = {
+    #     'U': ['W'] * 9,
+    #     'D': ['Y'] * 9,
+    #     'F': ['G'] * 9,
+    #     'B': ['B'] * 9,
+    #     'L': ['O'] * 9,
+    #     'R': ['R'] * 9,
+    # }
+
+    # def rotate_face_clockwise(face):
+    #     return [face[6], face[3], face[0],
+    #             face[7], face[4], face[1],
+    #             face[8], face[5], face[2]]
+
+    # def rotate_U_clockwise(cube):
+    #     cube['U'] = rotate_face_clockwise(cube['U'])
+    #     temp = cube['F'][0:3]
+    #     cube['F'][0:3] = cube['R'][0:3]
+    #     cube['R'][0:3] = cube['B'][0:3]
+    #     cube['B'][0:3] = cube['L'][0:3]
+    #     cube['L'][0:3] = temp
+
+    # def rotate_D_clockwise(cube):
+    #     cube['D'] = rotate_face_clockwise(cube['D'])
+    #     temp = cube['F'][6:9]
+    #     cube['F'][6:9] = cube['L'][6:9]
+    #     cube['L'][6:9] = cube['B'][6:9]
+    #     cube['B'][6:9] = cube['R'][6:9]
+    #     cube['R'][6:9] = temp
+
+    # def rotate_F_clockwise(cube):
+    #     cube['F'] = rotate_face_clockwise(cube['F'])
+    #     temp = [cube['U'][6], cube['U'][7], cube['U'][8]]
+    #     cube['U'][6], cube['U'][7], cube['U'][8] = cube['L'][8], cube['L'][5], cube['L'][2]
+    #     cube['L'][8], cube['L'][5], cube['L'][2] = cube['D'][2], cube['D'][1], cube['D'][0]
+    #     cube['D'][0], cube['D'][1], cube['D'][2] = cube['R'][6], cube['R'][3], cube['R'][0]
+    #     cube['R'][0], cube['R'][3], cube['R'][6] = temp
+
+    # def rotate_B_clockwise(cube):
+    #     cube['B'] = rotate_face_clockwise(cube['B'])
+    #     temp = [cube['U'][0], cube['U'][1], cube['U'][2]]
+    #     cube['U'][0], cube['U'][1], cube['U'][2] = cube['R'][8], cube['R'][5], cube['R'][2]
+    #     cube['R'][2], cube['R'][5], cube['R'][8] = cube['D'][6], cube['D'][7], cube['D'][8]
+    #     cube['D'][6], cube['D'][7], cube['D'][8] = cube['L'][0], cube['L'][3], cube['L'][6]
+    #     cube['L'][0], cube['L'][3], cube['L'][6] = temp[2], temp[1], temp[0]
+
+    # def rotate_L_clockwise(cube):
+    #     cube['L'] = rotate_face_clockwise(cube['L'])
+    #     temp = [cube['U'][0], cube['U'][3], cube['U'][6]]
+    #     cube['U'][0], cube['U'][3], cube['U'][6] = cube['F'][0], cube['F'][3], cube['F'][6]
+    #     cube['F'][0], cube['F'][3], cube['F'][6] = cube['D'][0], cube['D'][3], cube['D'][6]
+    #     cube['D'][0], cube['D'][3], cube['D'][6] = cube['B'][8], cube['B'][5], cube['B'][2]
+    #     cube['B'][8], cube['B'][5], cube['B'][2] = temp
+
+    # def rotate_R_clockwise(cube):
+    #     cube['R'] = rotate_face_clockwise(cube['R'])
+    #     temp = [cube['U'][2], cube['U'][5], cube['U'][8]]
+    #     cube['U'][2], cube['U'][5], cube['U'][8] = cube['F'][2], cube['F'][5], cube['F'][8]
+    #     cube['F'][2], cube['F'][5], cube['F'][8] = cube['D'][2], cube['D'][5], cube['D'][8]
+    #     cube['D'][2], cube['D'][5], cube['D'][8] = cube['B'][6], cube['B'][3], cube['B'][0]
+    #     cube['B'][6], cube['B'][3], cube['B'][0] = temp
+
+    # def rotate_counterclockwise(cube, rotate_func):
+    #     for _ in range(3):
+    #         rotate_func(cube)
+
+    # # 回転関数の辞書
+    # rotate_functions = {
+    #     'U': rotate_U_clockwise,
+    #     'U2': lambda cube: [rotate_U_clockwise(cube) for _ in range(2)],
+    #     'U\'': lambda cube: rotate_counterclockwise(cube, rotate_U_clockwise),
+        
+    #     'D': rotate_D_clockwise,
+    #     'D2': lambda cube: [rotate_D_clockwise(cube) for _ in range(2)],
+    #     'D\'': lambda cube: rotate_counterclockwise(cube, rotate_D_clockwise),
+        
+    #     'F': rotate_F_clockwise,
+    #     'F2': lambda cube: [rotate_F_clockwise(cube) for _ in range(2)],
+    #     'F\'': lambda cube: rotate_counterclockwise(cube, rotate_F_clockwise),
+        
+    #     'B': rotate_B_clockwise,
+    #     'B2': lambda cube: [rotate_B_clockwise(cube) for _ in range(2)],
+    #     'B\'': lambda cube: rotate_counterclockwise(cube, rotate_B_clockwise),
+        
+    #     'L': rotate_L_clockwise,
+    #     'L2': lambda cube: [rotate_L_clockwise(cube) for _ in range(2)],
+    #     'L\'': lambda cube: rotate_counterclockwise(cube, rotate_L_clockwise),
+        
+    #     'R': rotate_R_clockwise,
+    #     'R2': lambda cube: [rotate_R_clockwise(cube) for _ in range(2)],
+    #     'R\'': lambda cube: rotate_counterclockwise(cube, rotate_R_clockwise),
+    # }
+
+# def draw_cube_faces(cube_data, color_map):
+    #     fig, axs = plt.subplots(2, 3, figsize=(9, 6))
+    #     faces = ['U', 'L', 'F', 'R', 'B', 'D']
+    #     for idx, face in enumerate(faces):
+    #         ax = axs[idx // 3, idx % 3]
+    #         ax.set_title(face)
+    #         face_colors = cube_data[face]
+    #         for i in range(9):
+    #             row, col = divmod(i, 3)
+    #             color = color_map[face_colors[i]]
+    #             ax.add_patch(plt.Rectangle((col, 2 - row), 1, 1, facecolor=color, edgecolor='black'))
+    #         ax.set_xlim(0, 3)
+    #         ax.set_ylim(0, 3)
+    #         ax.axis('off')
+    #     plt.tight_layout()
+    #     return fig
+
+    # # 初期表示
+    # fig = draw_cube_faces(cube, color_map)
+    # st.pyplot(fig)
+    # st.write("Initial Cube State")
+
+
+
+    # def final_fig(spinmark):
+    #     for move in spinmark:
+    #         if move in rotate_functions:
+    #             rotate_functions[move](cube)
+    #             st.write(f"After {move} rotation:")
+    #             fig = draw_cube_faces(cube, color_map)
+    #             st.pyplot(fig)
+    #             final_fig = fig
+    #     return final_fig
+
+
+    
+    # final_fig = final_fig(spinmark)
+
+ 
+    # st.pyplot(final_fig)
+
