@@ -568,8 +568,8 @@ if st.button('スクランブル'):
         "G": "green",
         "O": "orange"
     }
-       st.write(' '.join(spinmark))
     
+    st.write(' '.join(spinmark))
     st.write(''.join(esolveway))
     st.write(''.join(csolveway))
     st.write(ecubes)
