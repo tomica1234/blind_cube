@@ -401,7 +401,7 @@ ccubes = [
 
 spincount = st.number_input('スクランブル回数',min_value=1,value=10)
 
-if st.button('スクランブル'):
+if st.button('スクランブル',key='scramble_button'):
     movelist1 = [0, 4, 1, 3, 2, 6]
     movelist2 = [[0, 4], [1, 3], [2, 6]]
     spin1 = random.sample(movelist1, 2)
@@ -725,7 +725,7 @@ def timer():
 
     try:
         while True:
-            if st.button('スタート/ストップ' , key='toggle_button'):
+            if st.button('スタート/ストップ' , key='st_button'):
                 if running:
                     elapsed_time += time.time() - start_time
                     st.write(f"停止: 経過時間は {elapsed_time:.2f} 秒です。")
