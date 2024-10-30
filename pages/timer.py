@@ -12,11 +12,13 @@ def timer():
         if st.button('文字列を見る/見ない', key='character_button'):
             if st.session_state.mitai:
                 st.write('文字列非表示中')
+                st.session_state.mitai = False
+                
             else:          
                 
                 st.write(''.join(st.session_state.esolveway))
                 st.write(''.join(st.session_state.csolveway))
-                mitai=True
+                st.session_state.mitai=True
     else:
         st.write('scrambleを実行すると文字列がここに表示されます')
     
