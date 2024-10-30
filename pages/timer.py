@@ -2,7 +2,7 @@ import streamlit as st
 import time
 
 def timer():
-    if st.session_state.esolveway:
+    if 'esolveway' in st.session_state:
         st.write(' '.join(st.session_state.esolveway))
         st.write(' '.join(st.session_state.csolveway))
     
