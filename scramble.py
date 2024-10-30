@@ -580,13 +580,75 @@ if st.button('スクランブル',key='scramble_button'):
     st.write(' '.join(spinmark))
     st.write(''.join(esolveway))
     st.write(''.join(csolveway))
-    st.write(ecubes)
-    st.write(ccubes)
 
-# インデックスの配置:
-# [0, 1, 2]
-# [3, 4, 5]
-# [6, 7, 8]
+hiragana_ecolors = {
+    'あ': 'white',
+    'え': 'white',
+    'か': 'white',
+    'さ': 'white',
+    'な': 'orange',
+    'に': 'orange',
+    'ぬ': 'orange',
+    'ね': 'orange',
+    'ら': 'red',
+    'り': 'red',
+    'る': 'red',
+    'れ': 'red',
+    'た': 'blue',
+    'ち': 'blue',
+    'き': 'blue',
+    'し': 'blue',
+    'い': 'yellow',
+    'う': 'yellow',
+    'く': 'yellow',
+    'す': 'yellow',
+    'つ': 'green',
+    'て': 'green',
+    'け': 'green',
+    'せ': 'green'
+}
+
+hiragana_ccolors = {
+    'あ': 'white',
+    'え': 'white',
+    'た': 'white',
+    'て': 'white',
+    'か': 'blue',
+    'き': 'blue',
+    'さ': 'blue',
+    'し': 'blue',
+    'く': 'green',
+    'け': 'green',
+    'す': 'green',
+    'せ': 'green',
+    'い': 'yellow',
+    'う': 'yellow',
+    'ち': 'yellow',
+    'つ': 'yellow',
+    'な': 'orange',
+    'に': 'orange',
+    'ぬ': 'orange',
+    'ね': 'orange',
+    'ら': 'red',
+    'り': 'red',
+    'る': 'red',
+    'れ': 'red'
+}
+
+
+def convert_hiragana_to_colors(input_list, color_dict):
+    output_list = []
+    for sublist in input_list:
+        color_sublist = [color_dict.get(hiragana, 'unknown') for hiragana in sublist]
+        output_list.append(color_sublist)
+    return output_list
+
+# 色に変換
+converted_ecolors = convert_hiragana_to_colors(ecubes, hiragana_ecolors)
+converted_ccolors = convert_hiragana_to_colors(ccubes, hiragana_ccolors)
+
+
+
 
 colors = {
     'U': ['white'] * 9,
@@ -597,7 +659,69 @@ colors = {
     'R': ['red'] * 9
 }
 
-#colors['U'][4] = 'pink'
+colors['U'][1] = str(converted_ecolors[0][0])
+colors['U'][3] = str(converted_ecolors[4][0])
+colors['U'][5] = str(converted_ecolors[8][0])
+colors['U'][7] = str(converted_ecolors[3][0])
+
+colors['F'][1] = str(converted_ecolors[3][1])
+colors['F'][3] = str(converted_ecolors[7][0])
+colors['F'][5] = str(converted_ecolors[11][0])
+colors['F'][7] = str(converted_ecolors[2][1])
+
+colors['L'][1] = str(converted_ecolors[4][1])
+colors['L'][3] = str(converted_ecolors[7][1])
+colors['L'][5] = str(converted_ecolors[5][1])
+colors['L'][7] = str(converted_ecolors[6][1])
+
+colors['D'][1] = str(converted_ecolors[1][0])
+colors['D'][3] = str(converted_ecolors[6][0])
+colors['D'][5] = str(converted_ecolors[10][0])
+colors['D'][7] = str(converted_ecolors[2][0])
+
+colors['B'][1] = str(converted_ecolors[0][1])
+colors['B'][3] = str(converted_ecolors[5][0])
+colors['B'][5] = str(converted_ecolors[9][0])
+colors['B'][7] = str(converted_ecolors[1][1])
+
+colors['R'][1] = str(converted_ecolors[8][1])
+colors['R'][3] = str(converted_ecolors[11][1])
+colors['R'][5] = str(converted_ecolors[9][1])
+colors['R'][7] = str(converted_ecolors[10][1])
+
+
+colors['U'][0] = str(converted_ccolors[0][0])
+colors['U'][2] = str(converted_ccolors[4][0])
+colors['U'][6] = str(converted_ccolors[3][0])
+colors['U'][8] = str(converted_ccolors[7][0])
+
+colors['F'][0] = str(converted_ccolors[3][1])
+colors['F'][2] = str(converted_ccolors[7][1])
+colors['F'][6] = str(converted_ccolors[2][1])
+colors['F'][8] = str(converted_ccolors[6][1])
+
+colors['R'][0] = str(converted_ccolors[7][2])
+colors['R'][2] = str(converted_ccolors[4][2])
+colors['R'][6] = str(converted_ccolors[6][2])
+colors['R'][8] = str(converted_ccolors[5][2])
+
+colors['D'][0] = str(converted_ccolors[1][0])
+colors['D'][2] = str(converted_ccolors[5][0])
+colors['D'][6] = str(converted_ccolors[2][0])
+colors['D'][8] = str(converted_ccolors[6][0])
+
+colors['B'][0] = str(converted_ccolors[0][1])
+colors['B'][2] = str(converted_ccolors[4][1])
+colors['B'][6] = str(converted_ccolors[1][1])
+colors['B'][8] = str(converted_ccolors[5][1])
+
+colors['L'][0] = str(converted_ccolors[3][2])
+colors['L'][2] = str(converted_ccolors[0][2])
+colors['L'][6] = str(converted_ccolors[2][2])
+colors['L'][8] = str(converted_ccolors[1][2])
+
+
+
 
 def plot_rubiks_cube(colors):
     positions = [-1, 0, 1]
