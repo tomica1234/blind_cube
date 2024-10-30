@@ -580,6 +580,7 @@ if st.button('スクランブル',key='scramble_button'):
     st.write(' '.join(spinmark))
     st.write(''.join(esolveway))
     st.write(''.join(csolveway))
+    st.session_state.spinmark=spinmark
     st.session_state.esolveway=esolveway
     st.session_state.csolveway=csolveway
     
