@@ -3,8 +3,10 @@ import time
 
 def timer():
     if 'esolveway' in st.session_state:
-        st.write(' '.join(st.session_state.esolveway))
-        st.write(' '.join(st.session_state.csolveway))
+        st.write(''.join(st.session_state.esolveway))
+        st.write(''.join(st.session_state.csolveway))
+    else:
+        st.write('scrambleを実行すると文字列がここに表示されます')
     
     # セッション状態を設定
     if 'running' not in st.session_state:
