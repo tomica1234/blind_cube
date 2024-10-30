@@ -1,8 +1,9 @@
 import streamlit as st
 import time
-time_list=[]
+
+time_list = []
+
 def timer():
-    
     # セッション状態を設定
     if 'running' not in st.session_state:
         st.session_state.running = False
@@ -19,16 +20,19 @@ def timer():
             st.session_state.elapsed_time += time.time() - st.session_state.start_time
             elapsed_display.write(f"停止: 経過時間は {st.session_state.elapsed_time:.2f} 秒です。")
             st.session_state.running = False
+            # 経過時間をリストに追加
             time_list.append(st.session_state.elapsed_time)
-            average= sum(time_list) / len(time_list)
-            st.write(f"平均時間は{average:.2f}秒です")
+
+            # 平均時間の計算
+            if time_list:
+                average = sum(time_list) / len(time_list)
+                st.write(f"平均時間は {average:.2f} 秒です")
             
         else:
             # タイマーをリセットしてスタート
             st.session_state.elapsed_time = 0.0  # 経過時間をリセット
             st.session_state.start_time = time.time()  # 現在の時間をスタート時間に設定
             st.session_state.running = True
-            
 
     # タイマーの経過時間を表示
     while st.session_state.running:
