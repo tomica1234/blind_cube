@@ -18,7 +18,7 @@ def timer():
             st.write('文字列表示中')
            
                 
-         else:   
+        else:              
             st.write('文字列非表示中')
                 
                 
