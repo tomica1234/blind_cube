@@ -737,10 +737,15 @@ def timer():
             st.session_state.running = True
 
     # タイマーの経過時間を表示
-    if st.session_state.running:
+    elapsed_display = st.empty()  # 空のコンテナを作成
+
+    while st.session_state.running:
         current_time = time.time()
         elapsed = st.session_state.elapsed_time + (current_time - st.session_state.start_time)
-        st.write(f"経過時間: {elapsed:.2f} 秒")
+        
+        # 経過時間を更新
+        elapsed_display.write(f"経過時間: {elapsed:.2f} 秒")
+        time.sleep(0.1)  # 100msごとに更新
 
 # タイマー関数を実行
 timer()
