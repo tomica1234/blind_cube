@@ -581,6 +581,130 @@ if st.button('スクランブル',key='scramble_button'):
     st.write(ecubes)
     st.write(ccubes)
 
+# インデックスの配置:
+# [0, 1, 2]
+# [3, 4, 5]
+# [6, 7, 8]
+
+colors = {
+    'U': ['white'] * 9,
+    'D': ['yellow'] * 9,
+    'F': ['green'] * 9,
+    'B': ['blue'] * 9,
+    'L': ['orange'] * 9,
+    'R': ['red'] * 9
+}
+
+#colors['U'][4] = 'pink'
+
+def plot_rubiks_cube(colors):
+    positions = [-1, 0, 1]
+    fig = go.Figure()
+
+    face_mapping = {
+        'U': (lambda x, y: (x, y, 1.5)),
+        'D': (lambda x, y: (x, y, -1.5)),
+        'F': (lambda x, y: (x, -1.5, y)),
+        'B': (lambda x, y: (x, 1.5, y)),
+        'L': (lambda x, y: (-1.5, x, y)),
+        'R': (lambda x, y: (1.5, x, y))
+    }
+
+    x_edges = []
+    y_edges = []
+    z_edges = []
+
+    for face, color_list in colors.items():
+        idx = 0
+        for i in positions:
+            for j in positions:
+                x, y, z = face_mapping[face](j, -i)
+
+                if face in ['U', 'D']:
+                    vertices = [
+                        [x - 0.5, y - 0.5, z],
+                        [x + 0.5, y - 0.5, z],
+                        [x + 0.5, y + 0.5, z],
+                        [x - 0.5, y + 0.5, z]
+                    ]
+                elif face in ['F', 'B']:
+                    vertices = [
+                        [x - 0.5, y, z - 0.5],
+                        [x + 0.5, y, z - 0.5],
+                        [x + 0.5, y, z + 0.5],
+                        [x - 0.5, y, z + 0.5]
+                    ]
+                elif face in ['L', 'R']:
+                    vertices = [
+                        [x, y - 0.5, z - 0.5],
+                        [x, y + 0.5, z - 0.5],
+                        [x, y + 0.5, z + 0.5],
+                        [x, y - 0.5, z + 0.5]
+                    ]
+
+                i_indices = [0, 0]
+                j_indices = [1, 2]
+                k_indices = [2, 3]
+
+                x_coords = [v[0] for v in vertices]
+                y_coords = [v[1] for v in vertices]
+                z_coords = [v[2] for v in vertices]
+
+                face_color = color_list[idx]
+                idx += 1
+
+                fig.add_trace(go.Mesh3d(
+                    x=x_coords,
+                    y=y_coords,
+                    z=z_coords,
+                    i=i_indices,
+                    j=j_indices,
+                    k=k_indices,
+                    color=face_color,
+                    opacity=1.0,
+                    flatshading=True,
+                    showscale=False
+                ))
+
+                edges = [
+                    (vertices[0], vertices[1]),
+                    (vertices[1], vertices[2]),
+                    (vertices[2], vertices[3]),
+                    (vertices[3], vertices[0])
+                ]
+
+                for edge in edges:
+                    x_edges.extend([edge[0][0], edge[1][0], None])
+                    y_edges.extend([edge[0][1], edge[1][1], None])
+                    z_edges.extend([edge[0][2], edge[1][2], None])
+
+    fig.add_trace(go.Scatter3d(
+        x=x_edges,
+        y=y_edges,
+        z=z_edges,
+        mode='lines',
+        line=dict(color='black', width=5),
+        hoverinfo='none',
+        showlegend=False
+    ))
+
+    fig.update_layout(
+        scene=dict(
+            xaxis=dict(visible=False),
+            yaxis=dict(visible=False),
+            zaxis=dict(visible=False),
+            aspectratio=dict(x=1, y=1, z=1),
+        ),
+        width=600,
+        height=600,
+        margin=dict(l=0, r=0, t=0, b=0)
+    )
+
+    st.plotly_chart(fig)
+
+plot_rubiks_cube(colors)
+
+
     
 
     # cube = {
