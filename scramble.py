@@ -717,34 +717,30 @@ if st.button('スクランブル',key='scramble_button'):
  
     # st.pyplot(final_fig)
 def timer():
-    start_time = None
-    running = False
-    elapsed_time = 0
+    # セッション状態を設定
+    if 'running' not in st.session_state:
+        st.session_state.running = False
+        st.session_state.start_time = 0.0
+        st.session_state.elapsed_time = 0.0
 
-  
+    # ボタンの表示と動作
+    if st.button('スタート/ストップ', key='toggle_button'):
+        if st.session_state.running:
+            # タイマーを停止
+            st.session_state.elapsed_time += time.time() - st.session_state.start_time
+            st.write(f"停止: 経過時間は {st.session_state.elapsed_time:.2f} 秒です。")
+            st.session_state.running = False
+        else:
+            # タイマーをスタート
+            st.session_state.start_time = time.time()
+            st.write("スタート")
+            st.session_state.running = True
 
-    # try:
-    while True:
-        if st.button('スタート/ストップ', key='kaburanai_namae'):
-            if running:
-                elapsed_time += time.time() - start_time
-                st.write(f"停止: 経過時間は {elapsed_time:.2f} 秒です。")
-                running = False
-            else:
-                start_time = time.time()
-                st.write("スタート")
-                running = True
-           
-                
-                    # time.sleep(0.1)
-            # time.sleep(0.1)
+    # タイマーの経過時間を表示
+    if st.session_state.running:
+        current_time = time.time()
+        elapsed = st.session_state.elapsed_time + (current_time - st.session_state.start_time)
+        st.write(f"経過時間: {elapsed:.2f} 秒")
 
-    # except KeyboardInterrupt:
-    #     st.write("\n終了しました。")
-    #     if running:
-    #         elapsed_time += time.time() - start_time
-    #     st.write(f"最終経過時間は {elapsed_time:.2f} 秒です。")
-
+# タイマー関数を実行
 timer()
-
-
