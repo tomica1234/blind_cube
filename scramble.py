@@ -402,17 +402,24 @@ ccubes = [
 spincount = st.number_input('スクランブル回数',min_value=1,value=10)
 
 if st.button('スクランブル'):
-    spin1 = [random.randint(0, 5) for i in range(spincount)]
-    spin2 = [random.randint(0, 2) for i in range(spincount)]
-    for i in range(1, len(spin1)-1):
-        lis = [j for j in range(6)]
-        if spin1[i] == spin1[i+1]:
-            if spin1[i-1] == spin1[i+1]:
-                lis.remove(spin1[i-1])
+    movelist1 = [0, 4, 1, 3, 2, 6]
+    movelist2 = [[0, 4], [1, 3], [2, 6]]
+    spincount = 10
+    spin1 = random.sample(movelist1, 2)
+    spin2 = [random.randint(0, 2) for i in range(spincount)
+    
+    for i in range(spincount):
+        if (spin1[-1] + spin1[-2]) % 4 == 0:
+            if spin1[-1] in movelist2[0]:
+                spin1.append(random.choice(movelist2[1]+movelist2[2]))
+            elif spin1[-1] in movelist2[1]:
+                spin1.append(random.choice(movelist2[2]+movelist2[0]))
             else:
-                lis.remove(spin1[i-1])
-                lis.remove(spin1[i+1])
-            spin1[i] = random.choice(lis)
+                spin1.append(random.choice(movelist2[0]+movelist2[1]))
+    
+        else:
+            movelist = [j for j in movelist1 if j != spin1[-1]]
+            spin1.append(random.choice(movelist))
 
     spinmark = []
 
@@ -450,7 +457,7 @@ if st.button('スクランブル'):
                 ecubes, ccubes = R2(ecubes, ccubes)
                 spinmark.append("R2")
             # print(ecubes)
-        if spin1[i] == 3:
+        if spin1[i] == 4:
             if spin2[i] == 0:
                 ecubes, ccubes = D(ecubes, ccubes)
                 spinmark.append("D")
@@ -461,7 +468,7 @@ if st.button('スクランブル'):
                 ecubes, ccubes = D2(ecubes, ccubes)
                 spinmark.append("D2")
             # print(ecubes)
-        if spin1[i] == 4:
+        if spin1[i] == 3:
             if spin2[i] == 0:
                 ecubes, ccubes = B(ecubes, ccubes)
                 spinmark.append("B")
@@ -472,7 +479,7 @@ if st.button('スクランブル'):
                 ecubes, ccubes = B2(ecubes, ccubes)
                 spinmark.append("B2")
             # print(ecubes)
-        if spin1[i] == 5:
+        if spin1[i] == 6:
             if spin2[i] == 0:
                 ecubes, ccubes = L(ecubes, ccubes)
                 spinmark.append("L")
