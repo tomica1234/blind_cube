@@ -15,7 +15,7 @@ def timer():
             if st.session_state.mitai:
                 st.write(''.join(st.session_state.esolveway))
                 st.write(''.join(st.session_state.csolveway))
-                st.write('文字列非表示中')
+                st.write('文字列表示中')
                
                 
             else:   
