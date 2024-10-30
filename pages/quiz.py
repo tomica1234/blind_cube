@@ -401,7 +401,7 @@ ccubes = [
     ['た', 'さ', 'ら'], ['ち', 'し', 'り'], ['つ', 'す', 'る'], ['て', 'せ', 'れ'],
 ]
 
-spincount = st.number_input('スクランブル回数',min_value=1,value=10)
+spincount = random.randint(10,20)
 
 if st.button('スクランブル',key='scramble_button'):
     movelist1 = [0, 4, 1, 3, 2, 6]
