@@ -867,7 +867,7 @@ def timer():
 
     while st.session_state.running:
         current_time = time.time()
-        elapsed = st.session_state.elapsed_time + (current_time - st.session_state.start_time)
+        elapsed =  (current_time - st.session_state.start_time)
         
         # 経過時間を更新
         elapsed_display.write(f"経過時間: {elapsed:.2f} 秒")
