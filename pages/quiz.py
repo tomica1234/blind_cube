@@ -437,7 +437,7 @@ if st.button('スクランブル',key='scramble_button'):
             elif spin2[i] == 2:
                 ecubes, ccubes = U2(ecubes, ccubes)
                 spinmark.append("U2")
-            # print(ecubes)
+                
         if spin1[i] == 1:
             if spin2[i] == 0:
                 ecubes, ccubes = F(ecubes, ccubes)
@@ -448,7 +448,7 @@ if st.button('スクランブル',key='scramble_button'):
             elif spin2[i] == 2:
                 ecubes, ccubes = F2(ecubes, ccubes)
                 spinmark.append("F2")
-            # print(ecubes)
+                
         if spin1[i] == 2:
             if spin2[i] == 0:
                 ecubes, ccubes = R(ecubes, ccubes)
@@ -459,7 +459,7 @@ if st.button('スクランブル',key='scramble_button'):
             elif spin2[i] == 2:
                 ecubes, ccubes = R2(ecubes, ccubes)
                 spinmark.append("R2")
-            # print(ecubes)
+                
         if spin1[i] == 4:
             if spin2[i] == 0:
                 ecubes, ccubes = D(ecubes, ccubes)
@@ -470,7 +470,7 @@ if st.button('スクランブル',key='scramble_button'):
             elif spin2[i] == 2:
                 ecubes, ccubes = D2(ecubes, ccubes)
                 spinmark.append("D2")
-            # print(ecubes)
+                
         if spin1[i] == 3:
             if spin2[i] == 0:
                 ecubes, ccubes = B(ecubes, ccubes)
@@ -481,7 +481,7 @@ if st.button('スクランブル',key='scramble_button'):
             elif spin2[i] == 2:
                 ecubes, ccubes = B2(ecubes, ccubes)
                 spinmark.append("B2")
-            # print(ecubes)
+                
         if spin1[i] == 6:
             if spin2[i] == 0:
                 ecubes, ccubes = L(ecubes, ccubes)
@@ -492,7 +492,6 @@ if st.button('スクランブル',key='scramble_button'):
             elif spin2[i] == 2:
                 ecubes, ccubes = L2(ecubes, ccubes)
                 spinmark.append("L2")
-            # print(ecubes)
 
 
     elist = []
@@ -571,9 +570,9 @@ if st.button('スクランブル',key='scramble_button'):
     
     st.write(' '.join(spinmark))
     edge_answer = st.text_input('答えを入力してください（エッジ）')
-    st.write(f'ループ始めの優先順位{">".join(esolvelist)}')
+    st.write(f'ループ始めの優先順位：{">".join(esolvelist)}')
     corner_answer = st.text_input('答えを入力してください（コーナー）')
-    st.write(f'ループ始めの優先順位{">".join(csolvelist)}')
+    st.write(f'ループ始めの優先順位：{">".join(csolvelist)}')
     
     
     if st.button('回答する！', key='answer_button'):
