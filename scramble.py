@@ -717,34 +717,34 @@ if st.button('スクランブル'):
 
  
     # st.pyplot(final_fig)
-def timer():
-    start_time = None
-    running = False
-    elapsed_time = 0
+# def timer():
+#     start_time = None
+#     running = False
+#     elapsed_time = 0
 
-    st.write("スペースキーを押してタイマーをスタート/ストップします。Ctrl+Cで終了。")
+#     st.write("スペースキーを押してタイマーをスタート/ストップします。Ctrl+Cで終了。")
 
-    try:
-        while True:
-            if keyboard.is_pressed('space'):
-                if running:
-                    elapsed_time += time.time() - start_time
-                    st.write(f"停止: 経過時間は {elapsed_time:.2f} 秒です。")
-                    running = False
-                else:
-                    start_time = time.time()
-                    st.write("スタート")
-                    running = True
-                # キーが離されるのを待つ
-                while keyboard.is_pressed('space'):
-                    time.sleep(0.1)
-            time.sleep(0.1)
+#     try:
+#         while True:
+#             if keyboard.is_pressed('space'):
+#                 if running:
+#                     elapsed_time += time.time() - start_time
+#                     st.write(f"停止: 経過時間は {elapsed_time:.2f} 秒です。")
+#                     running = False
+#                 else:
+#                     start_time = time.time()
+#                     st.write("スタート")
+#                     running = True
+#                 # キーが離されるのを待つ
+#                 while keyboard.is_pressed('space'):
+#                     time.sleep(0.1)
+#             time.sleep(0.1)
 
-    except KeyboardInterrupt:
-        st.write("\n終了しました。")
-        if running:
-            elapsed_time += time.time() - start_time
-        st.write(f"最終経過時間は {elapsed_time:.2f} 秒です。")
+#     except KeyboardInterrupt:
+#         st.write("\n終了しました。")
+#         if running:
+#             elapsed_time += time.time() - start_time
+#         st.write(f"最終経過時間は {elapsed_time:.2f} 秒です。")
 
 # timer()
 
