@@ -5,10 +5,11 @@ st.title('タイマー')
 
 def timer():
     if 'esolveway' in st.session_state:
-        
+       
         st.write(' '.join(st.session_state.spinmark))
-        st.write(''.join(st.session_state.esolveway))
-        st.write(''.join(st.session_state.csolveway))
+        if st.button('文字列も見たいですか？', key='character_button'):
+            st.write(''.join(st.session_state.esolveway))
+            st.write(''.join(st.session_state.csolveway))
     else:
         st.write('scrambleを実行すると文字列がここに表示されます')
     
