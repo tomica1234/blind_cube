@@ -1,8 +1,8 @@
 import streamlit as st
 import time
-
+time_list=[]
 def timer():
-    time_list=[]
+    
     # セッション状態を設定
     if 'running' not in st.session_state:
         st.session_state.running = False
