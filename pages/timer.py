@@ -5,7 +5,23 @@ st.title('タイマー')
 
 def timer():
     
-    
+    if 'esolveway' in st.session_state:
+        if "mitai" not in st.session_state:
+            st.session_state.mitai = False
+            
+        st.write(' '.join(st.session_state.spinmark))
+        if st.button('文字列を見る/見ない', key='character_button'):
+            if st.session_state.mitai:
+                st.write('文字列非表示中')
+                st.session_state.mitai = False
+                
+            else:          
+                
+                st.write(''.join(st.session_state.esolveway))
+                st.write(''.join(st.session_state.csolveway))
+                st.session_state.mitai=True
+    else:
+        st.write('scrambleを実行すると文字列がここに表示されます')
     # セッション状態を設定
     if 'running' not in st.session_state:
         st.session_state.running = False
@@ -46,23 +62,7 @@ def timer():
         # 経過時間を更新
         elapsed_display.write(f"経過時間: {elapsed:.2f} 秒")
         time.sleep(0.1)  # 100msごとに更新
-　　if 'esolveway' in st.session_state:
-        if "mitai" not in st.session_state:
-            st.session_state.mitai = False
-            
-        st.write(' '.join(st.session_state.spinmark))
-        if st.button('文字列を見る/見ない', key='character_button'):
-            if st.session_state.mitai:
-                st.write('文字列非表示中')
-                st.session_state.mitai = False
-                
-            else:          
-                
-                st.write(''.join(st.session_state.esolveway))
-                st.write(''.join(st.session_state.csolveway))
-                st.session_state.mitai=True
-    else:
-        st.write('scrambleを実行すると文字列がここに表示されます')
+　　
 
 # タイマー関数を実行
 timer()
