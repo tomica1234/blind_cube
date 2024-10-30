@@ -722,11 +722,11 @@ def timer():
     running = False
     elapsed_time = 0
 
-    st.write("スペースキーを押してタイマーをスタート/ストップします。Ctrl+Cで終了。")
+  
 
     try:
         while True:
-            if keyboard.is_pressed('space'):
+            if st.button('スタート/ストップ'):
                 if running:
                     elapsed_time += time.time() - start_time
                     st.write(f"停止: 経過時間は {elapsed_time:.2f} 秒です。")
