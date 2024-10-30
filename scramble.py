@@ -1,6 +1,8 @@
 import random, copy, time
 import streamlit as st
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+
 
 st.title('目隠しキューバーへの道')
 def U(ecubes, ccubes):
