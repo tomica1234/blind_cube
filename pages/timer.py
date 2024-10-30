@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 def timer():
     # セッション状態を設定
