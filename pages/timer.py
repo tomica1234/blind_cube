@@ -5,11 +5,18 @@ st.title('タイマー')
 
 def timer():
     if 'esolveway' in st.session_state:
-       
+        if "mitai" not in st.session_state:
+            st.session_state.mitai = False
+            
         st.write(' '.join(st.session_state.spinmark))
-        if st.button('文字列も見たいですか？', key='character_button'):
-            st.write(''.join(st.session_state.esolveway))
-            st.write(''.join(st.session_state.csolveway))
+        if st.button('文字列を見る/見ない', key='character_button'):
+            if st.session_state.mitai:
+                st.write('文字列非表示中')
+            else:          
+                
+                st.write(''.join(st.session_state.esolveway))
+                st.write(''.join(st.session_state.csolveway))
+                mitai=True
     else:
         st.write('scrambleを実行すると文字列がここに表示されます')
     
