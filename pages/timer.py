@@ -4,7 +4,6 @@ import time
 st.title('タイマー')
 
 def timer():
-    
     if 'esolveway' in st.session_state:
         if "mitai" not in st.session_state:
             st.session_state.mitai = False
@@ -22,6 +21,7 @@ def timer():
                 st.session_state.mitai=True
     else:
         st.write('scrambleを実行すると文字列がここに表示されます')
+    
     # セッション状態を設定
     if 'running' not in st.session_state:
         st.session_state.running = False
@@ -62,8 +62,6 @@ def timer():
         # 経過時間を更新
         elapsed_display.write(f"経過時間: {elapsed:.2f} 秒")
         time.sleep(0.1)  # 100msごとに更新
-　　
 
 # タイマー関数を実行
 timer()
-
