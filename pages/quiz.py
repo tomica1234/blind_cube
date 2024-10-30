@@ -567,39 +567,39 @@ if st.button('スクランブル',key='scramble_button'):
         "G": "green",
         "O": "orange"
     }
+        
+    st.session_state.esolveway=esolveway
+    st.session_state.csolveway=csolveway
 
     edge_answer = '値を入力してください'
     corner_answer = '値を入力してください'
     
     st.write(' '.join(spinmark))
-    edge_answer = st.text_input('答えを入力してください（エッジ）')
+    st.session_state.edge_answer = st.text_input('答えを入力してください（エッジ）')
     st.write(f'ループ始めの優先順位：{">".join(esolvelist)}')
-    corner_answer = st.text_input('答えを入力してください（コーナー）')
+    st.session_state.corner_answer = st.text_input('答えを入力してください（コーナー）')
     st.write(f'ループ始めの優先順位：{">".join(csolvelist)}')
     
     
     if st.button('回答する！', key='answer_button'):
-        if ''.join(esolveway) != edge_answer:
-            st.write('エッジ：<span style="color: red; font-weight: bold;">×</span>')
+        if ''.join(esolveway) != st.session_state.edge_answer:
+            st.write('エッジ：<span style="color: red; font-weight: bold;">×</span>', unsafe_allow_html=True)
             st.write('＜答え＞')
-            st.write(f'<span style="font-weight: bold;">{"".join(esolveway)}</span>')
+            st.write(f'<span style="font-weight: bold;">{"".join(esolveway)}</span>', unsafe_allow_html=True)
             st.write('＜あなたの回答＞')
-            st.write(edge_answer)
+            st.write(st.session_state.edge_answer)
         else:
             st.write('エッジ：よくできています！！by mentor.F')
 
-        if ''.join(csolveway) != corner_answer:
-            st.write('コーナー：<span style="color: red; font-weight: bold;">×</span>')
+        if ''.join(csolveway) != st.session_state.corner_answer:
+            st.write('コーナー：<span style="color: red; font-weight: bold;">×</span>', unsafe_allow_html=True)
             st.write('＜答え＞')
-            st.write(f'<span style="font-weight: bold;">{"".join(csolveway)}</span>')
+            st.write(f'<span style="font-weight: bold;">{"".join(csolveway)}</span>', unsafe_allow_html=True)
             st.write('＜あなたの回答＞')
-            st.write(corner_answer)
+            st.write(st.session_state.corner_answer)
         else:
             st.write('コーナー：よくできています！！by mentor.F')
 
-        
-    st.session_state.esolveway=esolveway
-    st.session_state.csolveway=csolveway
     
 
 hiragana_ecolors = {
