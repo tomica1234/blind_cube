@@ -12,14 +12,14 @@ def timer():
         if st.button('文字列を見る/見ない', key='character_button'):
             st.session_state.mitai = not st.session_state.mitai  
             
-            if st.session_state.mitai:
-                st.write(''.join(st.session_state.esolveway))
-                st.write(''.join(st.session_state.csolveway))
-                st.write('文字列表示中')
-               
+        if st.session_state.mitai:
+            st.write(''.join(st.session_state.esolveway))
+            st.write(''.join(st.session_state.csolveway))
+            st.write('文字列表示中')
+           
                 
-            else:   
-                st.write('文字列非表示中')
+         else:   
+            st.write('文字列非表示中')
                 
                 
     else:
