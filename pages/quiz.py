@@ -578,7 +578,7 @@ if st.button('スクランブル',key='scramble_button'):
     }
     
     st.write(' '.join(spinmark))
-    st.input_text('答えを入力してください')
+    st.text_input('答えを入力してください')
     st.session_state.esolveway=esolveway
     st.session_state.csolveway=csolveway
     
