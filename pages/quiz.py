@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 
-st.title('目隠しキューバーへの道')
+st.title('クイズ')
 def U(ecubes, ccubes):
     box = [ecubes[0][:], ccubes[0][:]]
     elist = [0, 4, 3, 8]
