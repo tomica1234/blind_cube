@@ -849,26 +849,27 @@ def timer():
         st.session_state.start_time = 0.0
         st.session_state.elapsed_time = 0.0
 
+    # 空のコンテナを作成
+    elapsed_display = st.empty()
+
     # ボタンの表示と動作
     if st.button('スタート/ストップ', key='toggle_button'):
         if st.session_state.running:
             # タイマーを停止
             st.session_state.elapsed_time += time.time() - st.session_state.start_time
-            elapsed_display.write(f"停止: 経過時間は {elapsed:.2f} 秒です。")
-          
+            elapsed_display.write(f"停止: 経過時間は {st.session_state.elapsed_time:.2f} 秒です。")
             st.session_state.running = False
         else:
-            # タイマーをスタート
-            st.session_state.start_time = time.time()
-            st.write("スタート")
+            # タイマーをリセットしてスタート
+            st.session_state.elapsed_time = 0.0  # 経過時間をリセット
+            st.session_state.start_time = time.time()  # 現在の時間をスタート時間に設定
             st.session_state.running = True
+            st.write("スタート")
 
     # タイマーの経過時間を表示
-    elapsed_display = st.empty()  # 空のコンテナを作成
-
     while st.session_state.running:
         current_time = time.time()
-        elapsed =  (current_time - st.session_state.start_time)
+        elapsed = st.session_state.elapsed_time + (current_time - st.session_state.start_time)
         
         # 経過時間を更新
         elapsed_display.write(f"経過時間: {elapsed:.2f} 秒")
