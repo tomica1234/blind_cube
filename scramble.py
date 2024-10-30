@@ -404,7 +404,6 @@ spincount = st.number_input('スクランブル回数',min_value=1,value=10)
 if st.button('スクランブル'):
     movelist1 = [0, 4, 1, 3, 2, 6]
     movelist2 = [[0, 4], [1, 3], [2, 6]]
-    spincount = 10
     spin1 = random.sample(movelist1, 2)
     spin2 = [random.randint(0, 2) for i in range(spincount)]
     
