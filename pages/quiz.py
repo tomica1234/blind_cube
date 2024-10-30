@@ -1,10 +1,12 @@
-import random, copy, time
+import random, time
 import streamlit as st
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 
 st.title('クイズ')
+
+# 回転を定義
 def U(ecubes, ccubes):
     box = [ecubes[0][:], ccubes[0][:]]
     elist = [0, 4, 3, 8]
@@ -496,17 +498,17 @@ if st.button('スクランブル',key='scramble_button'):
     elist = []
     clist = []
 
-    esolvelist = [8] + [i for i in range(12)]
-    csolvelist = [i for i in range(8)]
+    esolvelist = ['さ', 'か', 'き', 'け', 'く', 'い', 'う', 'す', 'り', 'れ', 'た', 'て']
+    csolvelist = ['あ', 'る', 'れ', 'ら', 'れ', 'く', 'に', 'ね']
 
     esolved = []
     csolved = []
 
     for i in esolvelist:
-        if ecubes[i][0] in ecubes_sample[8]:
+        if ecubes[eindex_dict1[i]][eindex_dict2[i]] in ecubes_sample[8]:
             continue
-        if ecubes[i][0] != ecubes_sample[i][0]:
-            data = ecubes_sample[i][0]
+        if ecubes[eindex_dict1[i]][eindex_dict2[i]] != ecubes_sample[eindex_dict1[i]][eindex_dict2[i]]:
+            data = ecubes_sample[eindex_dict1[i]][eindex_dict2[i]]
             if (data in esolved) == False:
                 elist.append(data)
             while (data in esolved) == False:
@@ -517,25 +519,15 @@ if st.button('スクランブル',key='scramble_button'):
 
     esolveway = [i for i in elist if i not in ecubes_sample[8]]
 
-    # if len(esolveway) % 2 == 1:
-    #     box = ccubes[4][:]
-    #     ccubes[4][0] = ccubes[7][0]
-    #     ccubes[4][1] = ccubes[7][2]
-    #     ccubes[4][2] = ccubes[7][1]
-
-    #     ccubes[7][0] = box[0]
-    #     ccubes[7][1] = box[2]
-    #     ccubes[7][2] = box[1]
-
     # エッジ奇数(かあか)
     if len(esolveway) % 2 == 1:
         esolveway += ['か', 'あ', 'か']
 
     for i in csolvelist:
-        if ccubes[i][0] in ccubes_sample[0]:
+        if ccubes[cindex_dict1[i]][cindex_dict2[i]] in ccubes_sample[0]:
             continue
-        if ccubes[i][0] != ccubes_sample[i][0]:
-            data = ccubes_sample[i][0]
+        if ccubes[cindex_dict1[i]][cindex_dict2[i]] != ccubes_sample[cindex_dict1[i]][cindex_dict2[i]]:
+            data = ccubes_sample[cindex_dict1[i]][cindex_dict2[i]]
             if (data in csolved) == False:
                 clist.append(data)
             while (data in csolved) == False:
@@ -578,7 +570,32 @@ if st.button('スクランブル',key='scramble_button'):
     }
     
     st.write(' '.join(spinmark))
-    st.text_input('答えを入力してください')
+    edge_answer = st.text_input('答えを入力してください（エッジ）')
+    st.write(f'ループの優先順位{">".join(esolvelist)}')
+    corner_answer = st.text_input('答えを入力してください（コーナー）')
+    st.write(f'ループの優先順位{">".join(csolvelist)}')
+    
+    
+    if st.button('回答する！', key='answer_button'):
+        if ''.join(esolveway) != edge_answer:
+            st.write('エッジ：<span style="color: red; font-weight: bold;">×</span>')
+            st.write('＜答え＞')
+            st.write(f'<span style="font-weight: bold;">{"".join(esolveway)}</span>')
+            st.write('＜あなたの回答＞')
+            st.write(edge_answer)
+        else:
+            st.write('エッジ：よくできています！！by mentor.F')
+
+        if ''.join(csolveway) != corner_answer:
+            st.write('コーナー：<span style="color: red; font-weight: bold;">×</span>')
+            st.write('＜答え＞')
+            st.write(f'<span style="font-weight: bold;">{"".join(csolveway)}</span>')
+            st.write('＜あなたの回答＞')
+            st.write(corner_answer)
+        else:
+            st.write('コーナー：よくできています！！by mentor.F')
+
+        
     st.session_state.esolveway=esolveway
     st.session_state.csolveway=csolveway
     
