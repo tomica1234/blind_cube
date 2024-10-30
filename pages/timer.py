@@ -1,6 +1,8 @@
 import streamlit as st
 import time
 
+st.title('タイマー')
+
 def timer():
     if 'esolveway' in st.session_state:
         st.write(''.join(st.session_state.esolveway))
