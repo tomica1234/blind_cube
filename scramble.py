@@ -509,15 +509,19 @@ if st.button('スクランブル'):
 
     esolveway = [i for i in elist if i not in ecubes_sample[8]]
 
-    if len(esolveway) % 2 == 1:
-        box = ccubes[4][:]
-        ccubes[4][0] = ccubes[7][0]
-        ccubes[4][1] = ccubes[7][2]
-        ccubes[4][2] = ccubes[7][1]
+    # if len(esolveway) % 2 == 1:
+    #     box = ccubes[4][:]
+    #     ccubes[4][0] = ccubes[7][0]
+    #     ccubes[4][1] = ccubes[7][2]
+    #     ccubes[4][2] = ccubes[7][1]
 
-        ccubes[7][0] = box[0]
-        ccubes[7][1] = box[2]
-        ccubes[7][2] = box[1]
+    #     ccubes[7][0] = box[0]
+    #     ccubes[7][1] = box[2]
+    #     ccubes[7][2] = box[1]
+
+    # エッジ奇数(かあか)
+    if len(esolveway) % 2 == 1:
+        esolveway += ['か', 'あ', 'か']
 
     for i in csolvelist:
         if ccubes[i][0] in ccubes_sample[0]:
