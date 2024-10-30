@@ -724,18 +724,18 @@ def timer():
   
 
     # try:
-        # while True:
-    if st.button('スタート/ストップ', key='kaburanai_namae'):
-        if running:
-            elapsed_time += time.time() - start_time
-            st.write(f"停止: 経過時間は {elapsed_time:.2f} 秒です。")
-            running = False
-        else:
-            start_time = time.time()
-            st.write("スタート")
-            running = True
-       
-            
+    while True:
+        if st.button('スタート/ストップ', key='kaburanai_namae'):
+            if running:
+                elapsed_time += time.time() - start_time
+                st.write(f"停止: 経過時間は {elapsed_time:.2f} 秒です。")
+                running = False
+            else:
+                start_time = time.time()
+                st.write("スタート")
+                running = True
+           
+                
                     # time.sleep(0.1)
             # time.sleep(0.1)
 
