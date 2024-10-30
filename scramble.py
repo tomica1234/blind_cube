@@ -406,7 +406,7 @@ if st.button('スクランブル'):
     movelist2 = [[0, 4], [1, 3], [2, 6]]
     spincount = 10
     spin1 = random.sample(movelist1, 2)
-    spin2 = [random.randint(0, 2) for i in range(spincount)
+    spin2 = [random.randint(0, 2) for i in range(spincount)]
     
     for i in range(spincount):
         if (spin1[-1] + spin1[-2]) % 4 == 0:
