@@ -2,8 +2,9 @@ import streamlit as st
 import time
 
 def timer():
-    st.write(' '.join(st.session_state.esolveway))
-    st.write(' '.join(st.session_state.csolveway))
+    if st.session_state.esolveway:
+        st.write(' '.join(st.session_state.esolveway))
+        st.write(' '.join(st.session_state.csolveway))
     
     # セッション状態を設定
     if 'running' not in st.session_state:
