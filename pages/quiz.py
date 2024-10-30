@@ -567,6 +567,9 @@ if st.button('スクランブル',key='scramble_button'):
         "G": "green",
         "O": "orange"
     }
+
+    edge_answer = '値を入力してください'
+    corner_answer = '値を入力してください'
     
     st.write(' '.join(spinmark))
     edge_answer = st.text_input('答えを入力してください（エッジ）')
