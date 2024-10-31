@@ -568,8 +568,8 @@ if st.button('スクランブル',key='scramble_button'):
         "O": "orange"
     }
         
-    st.session_state.esolveway=esolveway
-    st.session_state.csolveway=csolveway
+    # st.session_state.esolveway=esolveway
+    # st.session_state.csolveway=csolveway
 
     edge_answer = '値を入力してください'
     corner_answer = '値を入力してください'
