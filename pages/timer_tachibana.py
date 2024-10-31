@@ -8,9 +8,9 @@ def timer():
         if "mitai" not in st.session_state:
             st.session_state.mitai = False
         if "spinmark_quiz" not in st.session_state:
-            st.session_state.spinmark_quiz=False
+            st.session_state.spinmark_quiz = False
         if "spinmark" not in st.session_state:
-            st.session_state.spinmark_quiz=False
+            st.session_state.spinmark_quiz = False
         else:
             st.session_state.spinmark_quiz=True
             
