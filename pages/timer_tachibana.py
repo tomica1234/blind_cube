@@ -7,7 +7,7 @@ def timer():
     if 'esolveway' in st.session_state and 'csolveway' in st.session_state and 'spinmark' in st.session_state:
         if "mitai" not in st.session_state:
             st.session_state.mitai = False
-        if "spinmark" in not in st.session_state:
+        if "spinmark" not in st.session_state:
             st.session_state.spinmark=None
         if not st.session_state.spinmark==None:
             st.write(' '.join(st.session_state.spinmark))
