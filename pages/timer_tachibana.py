@@ -8,7 +8,7 @@ def timer():
         if "mitai" not in st.session_state:
             st.session_state.mitai = False
 
-        if "spinmark" in st.session_state:
+        if "spinmark" :
             st.write(' '.join(st.session_state.spinmark))
 
         if st.button('文字列を見る/見ない', key='character_button'):
