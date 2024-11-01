@@ -581,24 +581,24 @@ if st.button('スクランブル',key='scramble_button'):
     st.write(f'ループ始めの優先順位：{">".join(csolvelist)}')
     
     
-    if st.button('回答する！', key='answer_button'):
-        if ''.join(esolveway) != st.session_state.edge_answer:
-            st.write('エッジ：<span style="color: red; font-weight: bold;">×</span>', unsafe_allow_html=True)
-            st.write('＜答え＞')
-            st.write(f'<span style="font-weight: bold;">{"".join(esolveway)}</span>', unsafe_allow_html=True)
-            st.write('＜あなたの回答＞')
-            st.write(st.session_state.edge_answer)
-        else:
-            st.write('エッジ：よくできています！！by mentor.F')
+if st.button('回答する！', key='answer_button'):
+    if ''.join(esolveway) != st.session_state.edge_answer:
+        st.write('エッジ：<span style="color: red; font-weight: bold;">×</span>', unsafe_allow_html=True)
+        st.write('＜答え＞')
+        st.write(f'<span style="font-weight: bold;">{"".join(esolveway)}</span>', unsafe_allow_html=True)
+        st.write('＜あなたの回答＞')
+        st.write(st.session_state.edge_answer)
+    else:
+        st.write('エッジ：よくできています！！by mentor.F')
 
-        if ''.join(csolveway) != st.session_state.corner_answer:
-            st.write('コーナー：<span style="color: red; font-weight: bold;">×</span>', unsafe_allow_html=True)
-            st.write('＜答え＞')
-            st.write(f'<span style="font-weight: bold;">{"".join(csolveway)}</span>', unsafe_allow_html=True)
-            st.write('＜あなたの回答＞')
-            st.write(st.session_state.corner_answer)
-        else:
-            st.write('コーナー：よくできています！！by mentor.F')
+    if ''.join(csolveway) != st.session_state.corner_answer:
+        st.write('コーナー：<span style="color: red; font-weight: bold;">×</span>', unsafe_allow_html=True)
+        st.write('＜答え＞')
+        st.write(f'<span style="font-weight: bold;">{"".join(csolveway)}</span>', unsafe_allow_html=True)
+        st.write('＜あなたの回答＞')
+        st.write(st.session_state.corner_answer)
+    else:
+        st.write('コーナー：よくできています！！by mentor.F')
 
     
 
