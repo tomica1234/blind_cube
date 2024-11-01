@@ -571,14 +571,14 @@ if st.button('スクランブル',key='scramble_button'):
     # st.session_state.esolveway=esolveway
     # st.session_state.csolveway=csolveway
 
-edge_answer = '値を入力してください'
-corner_answer = '値を入力してください'
-
-st.write(' '.join(spinmark))
-st.session_state.edge_answer = st.text_input('答えを入力してください（エッジ）')
-st.write(f'ループ始めの優先順位：{">".join(esolvelist)}')
-st.session_state.corner_answer = st.text_input('答えを入力してください（コーナー）')
-st.write(f'ループ始めの優先順位：{">".join(csolvelist)}')
+    edge_answer = '値を入力してください'
+    corner_answer = '値を入力してください'
+    
+    st.write(' '.join(spinmark))
+    st.session_state.edge_answer = st.text_input('答えを入力してください（エッジ）')
+    st.write(f'ループ始めの優先順位：{">".join(esolvelist)}')
+    st.session_state.corner_answer = st.text_input('答えを入力してください（コーナー）')
+    st.write(f'ループ始めの優先順位：{">".join(csolvelist)}')
     
     
     if st.button('回答する！', key='answer_button'):
