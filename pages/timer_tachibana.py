@@ -4,6 +4,7 @@ import time
 st.title('タイマー')
 
 def timer():
+    st.write("何でクイズしただけなのにでるん？")
     if 'esolveway' in st.session_state and 'csolveway' in st.session_state and 'spinmark' in st.session_state:
         if "mitai" not in st.session_state:
             st.session_state.mitai = False
