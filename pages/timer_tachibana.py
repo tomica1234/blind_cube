@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-st.title('タイマ')
+st.title('タイマー')
 
 def timer():
    
