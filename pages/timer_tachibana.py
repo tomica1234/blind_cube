@@ -1,18 +1,18 @@
 import streamlit as st
 import time
 
-st.title('タイマー')
+st.title('タイマ')
 
 def timer():
-    st.write("はんえいされてる？")
+   
     # st.write('何でクイズしただけなのにでるん？')
     if 'esolveway' in st.session_state and 'csolveway' in st.session_state and 'spinmark' in st.session_state:
         if "mitai" not in st.session_state:
             st.session_state.mitai = False
         # st.write('何でクイズしただけなのにでるん？')
             
-        # if st.session_state.spinmark:
-        #     st.write(' '.join(st.session_state.spinmark))
+        if st.session_state.spinmark:
+            st.write(' '.join(st.session_state.spinmark))
 
         if st.button('文字列を見る/見ない', key='character_button'):
             st.session_state.mitai = not st.session_state.mitai  
