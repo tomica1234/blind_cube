@@ -23,6 +23,7 @@ def timer():
             st.write('文字列非表示中')
     else:
         st.write('scrambleを実行すると文字列がここに表示されます')
+    #ここから下がタイマー
 
     if 'running' not in st.session_state:
         st.session_state.running = False
@@ -54,5 +55,12 @@ def timer():
         elapsed = st.session_state.elapsed_time + (current_time - st.session_state.start_time)
         elapsed_display.write(f"経過時間: {elapsed:.2f} 秒")
         time.sleep(0.1) 
+        
+    if st.button("タイマーの記録をリセット"):
+        if "running" in st.session_state:
+            del st.session_state.running
+        st.write("タイマーの記録がリセットされました")
+            
+ 
 
 timer()
